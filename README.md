@@ -24,11 +24,14 @@ Assuming that VirtualBox (https://www.virtualbox.org/) and Vagrant (https://www.
 
 ## Using ezMage
 
-After the box starts, you can access it from http://192.168.33.23/ in your browser.  You may also access it from a local domain such as http://ezlamp.local or http://yourdomain.local by setting up any local domains in your hosts file. E.g:
 
-`192.168.33.23 ezlamp.local yourdomain.local`
+The default configuration of the box uses the ip 192.168.33.23 and domain magento-dev.local.  The webroot and domain name can be changed in the provision.sh shell file.
 
-The document root is in the `public` subdirectory.
+
+You should make an entry in your /etc/hosts file for the domain. E.g
+
+`192.168.33.23 magento-dev.local`
+
 
 #### MailCatcher
 Any emails your application sends are caught by MailCatcher, which can be accessed from:
@@ -43,8 +46,50 @@ Connection details for the MySQL database are:
 
 phpMyAdmin can be accessed from http://192.168.33.23:8001
 
-## Configuration
-There's not much to configure with ezMage.  Simply edit the Vagrantfile to make any configuration changes you might require.
+## Magento setup
+
+Log in to the vagrant
+
+```
+vagrant ssh
+
+```
+
+Change to the web root and set up magento:
+
+
+```
+ php bin/magento setup:install \
+   --admin-firstname=John \
+   --admin-lastname=Smith \
+   --admin-email=jsmith@mail.com \
+   --admin-user=admin \
+   --admin-password=password1 \
+   --base-url=http://magento-dev.local/ \
+   --db-host=localhost \
+   --db-name=magento \
+   --db-user=root \
+   --db-password=123 \
+   --currency=USD \
+   --timezone=America/New_York \
+   --language=en_US \
+   --use-rewrites=1
+
+```
+
+Compile Magento
+
+```
+php magento setup:di:compile
+
+```
+
+Deploy Magento
+
+```
+php magento setup:static:deploy
+
+```
 
 #### IP Address
 You can change the ip of the box by editing the following line in the `Vagrantfile` and replacing 192.168.33.23 with the ip you'd like to use:
