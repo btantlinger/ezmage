@@ -37,7 +37,7 @@ http://192.168.33.23:1080
 #### MySQL
 Connection details for the MySQL database are:
 
-**database:** ezlamp
+**database:** magento
 **user:** root
 **password:** 123
 
