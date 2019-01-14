@@ -64,7 +64,7 @@ Change to the web root and set up magento:
    --admin-lastname=Smith \
    --admin-email=jsmith@mail.com \
    --admin-user=admin \
-   --admin-password=password1 \
+   --admin-password=123123q \
    --base-url=http://magento-dev.local/ \
    --db-host=localhost \
    --db-name=magento \
