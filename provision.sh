@@ -10,7 +10,6 @@ PHP_VERSION="7.2"
 WEB_ROOT="magento"
 
 
-
 # Update PHP version
 sudo update-alternatives --set php /usr/bin/php${PHP_VERSION}
 sudo systemctl stop php7.1-fpm.service #> /dev/null 2>&1 & 
@@ -33,24 +32,4 @@ server {
 	include /var/www/${WEB_ROOT}/nginx.conf.sample;
 }
 EOF
-
-cat <<PMA | sudo tee /etc/nginx/sites-available/phpmyadmin
-server {
-        listen 8001;
-        server_name _;
-        root /usr/share/phpmyadmin;
-        index index.php;
-        autoindex off;
-        charset UTF-8;
-        location / {
-                try_files \$uri \$uri/ /index.php\$is_args\$args;
-        }
-        location ~ \\.php$ {
-               include snippets/fastcgi-php.conf;
-               fastcgi_pass unix:/run/php/php${PHP_VERSION}-fpm.sock;
-        }
-}
-PMA
-
 sudo service nginx restart
-
