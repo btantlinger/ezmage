@@ -14,14 +14,15 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "ezmage"
   
   config.vm.provider "virtualbox" do |v|
-    v.memory = 4096
+    v.memory = 8192
     v.cpus = 2
+    #v.customize ["modifyvm", :id, "--cpuexecutioncap", "100"]
   end  
   
   # config.vm.synced_folder ".", "/var/www", :mount_options => ["dmode=777", "fmode=666"]    
   # Optional NFS. Make sure to remove other synced_folder line too
-  config.vm.synced_folder ".", "/var/www", :nfs => { :mount_options => ["dmode=777","fmode=666"] }   
-
-  config.vm.provision "shell", path: "provision.sh"
+  #config.vm.synced_folder ".", "/var/www", :nfs => { :mount_options => ["dmode=777","fmode=666"] }   
+  config.vm.synced_folder ".", "/var/www", type: "nfs", mount_options: ['rw', 'vers=3', 'tcp'], linux__nfs_options: ['rw','no_subtree_check','all_squash','async']
   
+  config.vm.provision "shell", path: "provision.sh"  
 end
