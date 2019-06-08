@@ -1,6 +1,6 @@
 # ezMage
 
-A basic preprovisioned dev box for Magento development
+A basic preprovisioned dev box for Magento 2 development
 
 - Ubuntu 16.04.4
 - nginx
