@@ -2,18 +2,17 @@
 
 A basic preprovisioned dev box for Magento 2 development
 
-- Ubuntu 16.04.4
+- Ubuntu 20.04
 - nginx
 - redis
-- elasticsearch
-- MySQL 5.7
-- PHP 7.1
+- elasticsearch 7
+- MySQL 8
+- PHP 7.4
 - composer
 - Xdebug
-- MailCatcher
-- phpMyAdmin
+- MailHog
 - node & npm
-- Gulp, Grunt, Bower, Webpack
+- Gulp, Grunt
 
 ## Start up ezMage
 Assuming that VirtualBox (https://www.virtualbox.org/) and Vagrant (https://www.vagrantup.com/) are already installed on your machine...
@@ -33,18 +32,17 @@ You should make an entry in your /etc/hosts file for the domain. E.g
 `192.168.33.23 magento-dev.local`
 
 
-#### MailCatcher
-Any emails your application sends are caught by MailCatcher, which can be accessed from:
-http://192.168.33.23:1080
+#### MailHog
+Any emails your application sends are caught by MailHog, which can be accessed from:
+http://192.168.33.23:8025
 
 #### MySQL
 Connection details for the MySQL database are:
 
 **database:** magento
-**user:** root
+**user:** admin
 **password:** 123
 
-phpMyAdmin can be accessed from http://192.168.33.23:8001
 
 ## Magento setup
 
