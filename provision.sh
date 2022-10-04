@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#Set the host name 
+#Set the host name
 SRV_NAME="magento-dev.local"
 
-#Set the php version.  
-PHP_VERSION="7.4"
+#Set the php version.
+PHP_VERSION="8.1"
 
 #Set Web root relative to /var/www
 WEB_ROOT="magento"
@@ -17,7 +17,7 @@ SSL_CERT_KEY="cert-key.pem"
 CONF_FILE="/var/www/nginx.conf"
 if [[ -f $CONF_FILE ]];then
     sudo cp $CONF_FILE /etc/nginx/sites-available/
-fi    
+fi
 
 cat <<EOF | sudo tee /etc/nginx/sites-available/magento
 upstream fastcgi_backend {
@@ -38,7 +38,7 @@ CERT_KEY="/var/www/${SSL_CERT_KEY}"
 if [[ -f $CERT ]] && [[ -f $CERT_KEY ]];then
 
     sudo cp $CERT /etc/nginx/sites-available/$SSL_CERT
-    sudo cp $CERT_KEY /etc/nginx/sites-available/$SSL_CERT_KEY    
+    sudo cp $CERT_KEY /etc/nginx/sites-available/$SSL_CERT_KEY
 
 cat <<EOF | sudo tee -a /etc/nginx/sites-available/magento
 server {

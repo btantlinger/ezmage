@@ -1,13 +1,13 @@
 # ezMage
 
-A basic preprovisioned dev box for Magento 2 development
+A basic preprovisioned dev box for Magento 2.4.4 development
 
 - Ubuntu 20.04
 - nginx
 - redis
 - elasticsearch 7
 - MySQL 8
-- PHP 7.4
+- PHP 8.1
 - composer
 - Xdebug
 - MailHog
